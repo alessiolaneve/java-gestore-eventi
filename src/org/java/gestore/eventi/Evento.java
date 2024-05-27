@@ -26,15 +26,15 @@ public class Evento {
 		/* Inserire il controllo che la data non sia già passata e che il numero di posti totali sia positivo. 
    In caso contrario mostrare i dovuti avvisi all’utente
 		 */	
-
 		if (LocalDateTime.now().isAfter(data) || numPostiTot <= 0 ) {
 			System.out.println("La data o il numero di posti totali inseriti non sono corretti.");
-		}
-		
+		} 
+		else {
 		this.titolo = titolo;
 		this.data = data;
 		this.numPostiTot = numPostiTot;
 		this.numPostiPren = 0;
+		}
 	}
 
 /* Vanno inoltre implementati dei metodi public che svolgono le seguenti funzioni:
