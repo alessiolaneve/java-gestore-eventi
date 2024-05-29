@@ -1,12 +1,8 @@
 package org.java.gestore.eventi;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-
-/* Step 2
--Stampare a video il numero di posti prenotati e quelli disponibili
- */
 
 public class Main {
 
@@ -21,18 +17,18 @@ public class Main {
 		System.out.println("Inserisci il titolo dell'evento.");
 		String titolo = scan.nextLine();
 
-		System.out.println("Inserisci la data dell'evento nel formato dd/MM/yyyy HH:mm.");
+		System.out.println("Inserisci la data dell'evento nel formato dd/MM/yyyy");
 		String dataStr = scan.nextLine();
-		// convertire string to localdatetime
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-		LocalDateTime data = LocalDateTime.parse(dataStr, formatter);
+		// convertire string to LocalDate
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate data = LocalDate.parse(dataStr, formatter);
 
 		System.out.println("Inserisci il numero di posti disponibili per l'evento.");
 		int numPostiTot = scan.nextInt();
 		scan.nextLine();
 
 		Evento evento = new Evento(titolo, data, numPostiTot);
-		LocalDateTime dataCheck = evento.getData();
+		LocalDate dataCheck = evento.getData();
 		if (dataCheck != null) {
 			System.out.println(evento.toString());
 
@@ -60,14 +56,14 @@ public class Main {
 				System.out.println("Hai scelto di non effettuare prenotazioni.");
 			}
 			;
-			
+			int postiRimasti = evento.getNumPostiTot() - evento.getNumPostiPren();
 			/* -Stampare a video il numero di posti prenotati e quelli disponibili */
-			System.out.printf("Ci sono %s posti prenotati e %s ancora disponibili.", evento.getNumPostiPren(), evento.getNumPostiTot());
+			System.out.printf("Ci sono %s posti prenotati e %s ancora disponibili.", evento.getNumPostiPren(),postiRimasti);
 			
 			/* -Chiedere all’utente se e quanti posti vuole disdire 
 			 * -Provare ad effettuare le disdette, implementando opportuni controlli
 			 */
-			System.out.println("Vuoi disdire delle prenotazioni effettuate? s/n");
+			System.out.println("\nVuoi disdire delle prenotazioni effettuate? s/n");
 			String rispostaDisdici = scan.nextLine();
 			
 			if (rispostaDisdici.equalsIgnoreCase("s")) {
@@ -84,6 +80,7 @@ public class Main {
 			} else {
 				System.out.println("Hai scelto di non disdire alcuna prenotazione.");
 			}
+			
 			
 		} else {
 			System.out.println("Hai inserito una data già passata.");

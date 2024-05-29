@@ -1,6 +1,6 @@
 package org.java.gestore.eventi;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /* Creare una classe Evento che abbia le seguenti proprietà:
@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 public class Evento {
 	
 	private String titolo;
-	private LocalDateTime data;
+	private LocalDate data;
 	private int numPostiTot;
 	private int numPostiPren;
 	
@@ -21,12 +21,12 @@ public class Evento {
 /*  Quando si istanzia un nuovo evento questi attributi devono essere tutti valorizzati nel costruttore,
 	tranne posti prenotati che va inizializzato a 0.
  */	
-	public Evento(String titolo, LocalDateTime data, int numPostiTot) {
+	public Evento(String titolo, LocalDate data, int numPostiTot) {
 		
 		/* Inserire il controllo che la data non sia già passata e che il numero di posti totali sia positivo. 
    In caso contrario mostrare i dovuti avvisi all’utente
 		 */	
-		if (LocalDateTime.now().isAfter(data) || numPostiTot <= 0 ) {
+		if (LocalDate.now().isAfter(data) || numPostiTot <= 0 ) {
 			System.out.println("La data o il numero di posti totali inseriti non sono corretti.");
 		} 
 		else {
@@ -47,7 +47,7 @@ public class Evento {
  */
 
 	public void prenota() {
-		if (LocalDateTime.now().isAfter(data) || numPostiPren >= numPostiTot) {
+		if (LocalDate.now().isAfter(data) || numPostiPren >= numPostiTot) {
 			System.out.println("Non ci sono posti disponibili o l'evento è già passato.");
 		} else {
 			numPostiPren++;
@@ -55,7 +55,7 @@ public class Evento {
 	}
 	
 	public void disdici() {
-		if (LocalDateTime.now().isAfter(data) || numPostiPren <= 0) {
+		if (LocalDate.now().isAfter(data) || numPostiPren <= 0) {
 			System.out.println("Non è stato ancora prenotato alcun posto o l'evento è già passato.");
 		} else {
 			numPostiPren--;
@@ -64,7 +64,7 @@ public class Evento {
 	
 	@Override
 	public String toString() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		return data.format(formatter) + " - " + titolo;
 	}
 /* Aggiungere metodi getter e setter in modo che:
@@ -85,12 +85,12 @@ public class Evento {
 	}
 
 
-	public LocalDateTime getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
 
-	public void setData(LocalDateTime data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 
