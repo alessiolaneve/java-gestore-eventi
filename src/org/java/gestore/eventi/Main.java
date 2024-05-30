@@ -1,6 +1,7 @@
 package org.java.gestore.eventi;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
@@ -20,9 +21,9 @@ public class Main {
 		System.out.println("Inserisci la data dell'evento nel formato dd/MM/yyyy");
 		String dataStr = scan.nextLine();
 		// convertire string to LocalDate
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		LocalDate data = LocalDate.parse(dataStr, formatter);
-
+		DateTimeFormatter formatterD = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDate data = LocalDate.parse(dataStr, formatterD);
+		
 		System.out.println("Inserisci il numero di posti disponibili per l'evento.");
 		int numPostiTot = scan.nextInt();
 		scan.nextLine();
@@ -81,7 +82,31 @@ public class Main {
 				System.out.println("Hai scelto di non disdire alcuna prenotazione.");
 			}
 			
+			/* collegamento step 3  */
+			System.out.println("\nL'evento a cui vuoi partecipare è un concerto? s/n");
+			String rispostaConcerto = scan.nextLine();
 			
+			if (rispostaConcerto.equalsIgnoreCase("s")) {
+				Concerto concerto = new Concerto(titolo, dataCheck, numPostiTot);
+				System.out.println("A che ora si terrà il concerto? HH:mm");
+				String oraStr = scan.nextLine();
+				// convertire string to LocalTime
+				DateTimeFormatter formatterH = DateTimeFormatter.ofPattern("HH:mm");
+				LocalTime ora = LocalTime.parse(oraStr, formatterH);
+				concerto.setOra(ora);
+				
+				// set prezzo
+				System.out.println("Inserisci il prezzo del concerto.");
+				Double prezzo = scan.nextDouble();
+				concerto.setPrezzo(prezzo);
+				
+				// output concerto formattato
+				concerto.formattedDate(data);
+				concerto.formattedPrice(prezzo);
+				System.out.println(concerto.toString());
+			} else {
+				System.out.println("Goditi l'evento!");
+			}
 		} else {
 			System.out.println("Hai inserito una data già passata.");
 		}

@@ -33,11 +33,15 @@ public class Concerto extends Evento {
 	}
 	
 	public String formattedPrice(double prezzo) {
-		return prezzo + "€";
+		return String.format("%.2f €", prezzo);
 	}
 	
 	/* Fare l’ override del metodo toString() in modo che venga restituita una stringa del tipo: 
 	   data e ora formattata - titolo - prezzo formattato */
+	@Override
+	public String toString() {
+		return formattedDate(getData()) + " " + getTitolo() + " " + formattedPrice(prezzo);
+	}
 	
 	/* Aggiungere questi attributi nel costruttore e implementarne getter e setter. */
 	public LocalTime getOra() {
