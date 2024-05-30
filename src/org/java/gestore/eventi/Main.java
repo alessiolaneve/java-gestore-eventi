@@ -87,23 +87,21 @@ public class Main {
 			String rispostaConcerto = scan.nextLine();
 			
 			if (rispostaConcerto.equalsIgnoreCase("s")) {
-				Concerto concerto = new Concerto(titolo, dataCheck, numPostiTot);
 				System.out.println("A che ora si terrà il concerto? HH:mm");
 				String oraStr = scan.nextLine();
 				// convertire string to LocalTime
 				DateTimeFormatter formatterH = DateTimeFormatter.ofPattern("HH:mm");
 				LocalTime ora = LocalTime.parse(oraStr, formatterH);
-				concerto.setOra(ora);
 				
 				// set prezzo
 				System.out.println("Inserisci il prezzo del concerto.");
 				Double prezzo = scan.nextDouble();
-				concerto.setPrezzo(prezzo);
+
+				Concerto concerto = new Concerto(titolo, dataCheck, numPostiTot, ora, prezzo);
 				
 				// output concerto formattato
-				concerto.formattedDate(data);
-				concerto.formattedPrice(prezzo);
 				System.out.println(concerto.toString());
+				
 			} else {
 				System.out.println("Goditi l'evento!");
 			}

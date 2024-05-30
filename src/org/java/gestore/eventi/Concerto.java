@@ -15,7 +15,7 @@ public class Concerto extends Evento {
 	private LocalTime ora;
 	private double prezzo;
 	
-	public Concerto(String titolo, LocalDate data, int numPostiTot) {
+	public Concerto(String titolo, LocalDate data, int numPostiTot, LocalTime ora, double prezzo) {
 		super(titolo, data, numPostiTot);
 		this.ora = ora;
 		this.prezzo = prezzo;

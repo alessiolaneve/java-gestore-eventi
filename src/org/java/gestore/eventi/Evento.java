@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 	-numero di posti prenotati
  */
 
-public class Evento {
+public class Evento implements EventoI{
 	
 	private String titolo;
 	private LocalDate data;
@@ -45,7 +45,7 @@ public class Evento {
 	l’override del metodo toString() in modo che venga restituita una stringa contenente: data formattata - titolo
 	Aggiungete eventuali metodi (public e private) che vi aiutino a svolgere le funzioni richieste.
  */
-
+	@Override
 	public void prenota() {
 		if (LocalDate.now().isAfter(data) || numPostiPren >= numPostiTot) {
 			System.out.println("Non ci sono posti disponibili o l'evento è già passato.");
@@ -54,6 +54,7 @@ public class Evento {
 		}
 	}
 	
+	@Override
 	public void disdici() {
 		if (LocalDate.now().isAfter(data) || numPostiPren <= 0) {
 			System.out.println("Non è stato ancora prenotato alcun posto o l'evento è già passato.");
