@@ -52,7 +52,7 @@ public class Main {
 					evento.prenota();
 				}
 				System.out.printf("Hai prenotato %d posti\n", numPrenotazioni);
-
+				
 			} else {
 				System.out.println("Hai scelto di non effettuare prenotazioni.");
 			}
@@ -73,10 +73,14 @@ public class Main {
 				int numDisd = scan.nextInt();
 				scan.nextLine();
 				
-				for (int i = 0; i < numDisd; i++) {
-					evento.disdici();
+				if (numDisd > 0 && numDisd < evento.getNumPostiPren()) {
+					for (int i = 0; i < numDisd; i++) {
+						evento.disdici();
+					}
+					System.out.printf("Hai disdetto %s posti\n", numDisd);					
+				} else {
+					System.out.println("Hai inserito un numero di disdette errato.");
 				}
-				System.out.printf("Hai disdetto %s posti\n", numDisd);
 
 			} else {
 				System.out.println("Hai scelto di non disdire alcuna prenotazione.");
