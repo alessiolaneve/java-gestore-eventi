@@ -73,31 +73,25 @@ public class Evento{
 	-numero di posti totale sia solo in lettura
 	-numero di posti prenotati sia solo in lettura
  */
-	
-	public String getTitolo() {
+		public String getTitolo() {
 		return titolo;
 	}
-
 
 	public void setTitolo(String titolo) {
 		this.titolo = titolo;
 	}
 
-
 	public LocalDate getData() {
 		return data;
 	}
-
 
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
 
-
 	public int getNumPostiTot() {
 		return numPostiTot;
 	}
-
 
 	public int getNumPostiPren() {
 		return numPostiPren;
